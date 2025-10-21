@@ -23,22 +23,28 @@ jobs:
     - name: Show Xcode version
       run: xcodebuild -version
     
+    - name: List available schemes
+      run: |
+        xcodebuild -project TxtReader.xcodeproj -list
+    
     - name: Build project
       run: |
-        xcodebuild clean build \
+        xcodebuild archive \
           -project TxtReader.xcodeproj \
           -scheme TxtReader \
           -sdk iphoneos \
           -configuration Release \
-          -derivedDataPath ./build \
+          -archivePath ./build/TxtReader.xcarchive \
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO
+          CODE_SIGNING_ALLOWED=NO \
+          DEVELOPMENT_TEAM="" \
+          ONLY_ACTIVE_ARCH=NO
     
-    - name: Create IPA
+    - name: Export Archive to IPA
       run: |
         mkdir -p Payload
-        cp -r ./build/Build/Products/Release-iphoneos/TxtReader.app Payload/
+        cp -R ./build/TxtReader.xcarchive/Products/Applications/TxtReader.app Payload/
         zip -r TxtReader-unsigned.ipa Payload
         rm -rf Payload
     

@@ -71,17 +71,26 @@
 
 ## 🚀 构建说明
 
-本项目使用 GitHub Actions 自动构建：
+本项目使用 GitHub Actions 自动构建，无需本地 Mac 环境！
+
+### 自动构建
 
 1. 推送代码到 `main` 或 `master` 分支
 2. GitHub Actions 自动编译项目
 3. 生成未签名的 IPA 文件
 4. 自动创建 Release 并上传 IPA
 
-手动触发构建：
+### 手动触发构建
+
 - 进入 Actions 标签页
 - 选择 "Build iOS App" workflow
 - 点击 "Run workflow"
+
+### 下载 IPA
+
+构建完成后，在以下位置下载：
+- **Releases 页面**: https://github.com/Heartcoolman/Read-TXT/releases
+- **Actions Artifacts**: 进入对应的 workflow run 下载
 
 ## 📖 使用说明
 
