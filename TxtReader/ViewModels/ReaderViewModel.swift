@@ -47,13 +47,21 @@ class ReaderViewModel: ObservableObject {
             let encodingName = book.encoding
             let encoding = getEncoding(from: encodingName)
             
-            // Decode text
-            fullText = try TextDecoder.decode(data: data, encoding: encoding)
+            // Decode text in background
+            let decodedText = try await Task.detached {
+                try TextDecoder.decode(data: data, encoding: encoding)
+            }.value
             
-            // Detect chapters
-            chapters = ChapterDetector.detectChapters(text: fullText)
+            fullText = decodedText
             
-            // Paginate if in paged mode
+            // Detect chapters in background
+            let detectedChapters = await Task.detached {
+                ChapterDetector.detectChapters(text: decodedText)
+            }.value
+            
+            chapters = detectedChapters
+            
+            // Paginate if in paged mode (already in background)
             if settings.readingMode == "paged" {
                 await paginateText(settings: settings)
             }
@@ -160,14 +168,22 @@ class ReaderViewModel: ObservableObject {
         let text = fullText
         let chapters = chapters
         
-        return await Task.detached {
+        return await Task.detached(priority: .userInitiated) {
             var results: [SearchResult] = []
             let lowercasedQuery = query.lowercased()
+            
+            // 性能优化：限制搜索结果数量
+            let maxResults = 200
             
             let lines = text.components(separatedBy: .newlines)
             var position = 0
             
             for (lineIndex, line) in lines.enumerated() {
+                // 如果已经找到足够多结果，停止搜索
+                if results.count >= maxResults {
+                    break
+                }
+                
                 if line.lowercased().contains(lowercasedQuery) {
                     let chapterIndex = ChapterDetector.getChapterIndex(at: position, in: chapters)
                     let chapterTitle = chapterIndex < chapters.count 

@@ -32,30 +32,38 @@ class ChapterDetector {
     // MARK: - Detect Chapters
     static func detectChapters(text: String) -> [Chapter] {
         var chapters: [Chapter] = []
+        
+        // 性能优化：限制检查的行数（只检查前10000行）
         let lines = text.components(separatedBy: "\n")
+        let linesToCheck = min(lines.count, 10000)
         
         var currentPosition = 0
         var lastChapterStart = 0
         var lastChapterTitle = "开始"
         
-        for (index, line) in lines.enumerated() {
-            let trimmedLine = line.trimmingCharacters(in: .whitespacesAndNewlines)
+        for index in 0..<lines.count {
+            let line = lines[index]
             
-            // Check if this line matches any chapter pattern
-            if let title = matchChapterPattern(line: trimmedLine) {
-                // Save previous chapter
-                if !chapters.isEmpty || index > 0 {
-                    chapters.append(Chapter(
-                        title: lastChapterTitle,
-                        startPosition: lastChapterStart,
-                        endPosition: currentPosition,
-                        level: 1
-                    ))
-                }
+            // 只在前10000行检查章节模式，提高性能
+            if index < linesToCheck {
+                let trimmedLine = line.trimmingCharacters(in: .whitespacesAndNewlines)
                 
-                // Start new chapter
-                lastChapterTitle = title
-                lastChapterStart = currentPosition
+                // Check if this line matches any chapter pattern
+                if let title = matchChapterPattern(line: trimmedLine) {
+                    // Save previous chapter
+                    if !chapters.isEmpty || index > 0 {
+                        chapters.append(Chapter(
+                            title: lastChapterTitle,
+                            startPosition: lastChapterStart,
+                            endPosition: currentPosition,
+                            level: 1
+                        ))
+                    }
+                    
+                    // Start new chapter
+                    lastChapterTitle = title
+                    lastChapterStart = currentPosition
+                }
             }
             
             currentPosition += line.count + 1 // +1 for newline

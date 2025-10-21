@@ -12,43 +12,50 @@ struct PagedReaderView: View {
         GeometryReader { geometry in
             ZStack {
                 if !viewModel.pages.isEmpty && viewModel.currentPageIndex < viewModel.pages.count {
+                    // 性能优化：只渲染当前页和相邻页
                     // Current page
                     pageContent(viewModel.pages[viewModel.currentPageIndex])
                         .offset(x: dragOffset)
+                        .zIndex(1)
                     
-                    // Previous page (if exists)
-                    if viewModel.currentPageIndex > 0 {
+                    // Previous page (if exists) - 懒加载
+                    if viewModel.currentPageIndex > 0 && abs(dragOffset) > 10 {
                         pageContent(viewModel.pages[viewModel.currentPageIndex - 1])
                             .offset(x: dragOffset - geometry.size.width)
+                            .zIndex(0)
                     }
                     
-                    // Next page (if exists)
-                    if viewModel.currentPageIndex < viewModel.pages.count - 1 {
+                    // Next page (if exists) - 懒加载
+                    if viewModel.currentPageIndex < viewModel.pages.count - 1 && abs(dragOffset) > 10 {
                         pageContent(viewModel.pages[viewModel.currentPageIndex + 1])
                             .offset(x: dragOffset + geometry.size.width)
+                            .zIndex(0)
                     }
                 } else {
-                    Text("正在加载...")
+                    ProgressView("正在加载...")
                         .foregroundColor(settings.currentTheme.textColor)
                 }
             }
             .contentShape(Rectangle())
             .gesture(
-                DragGesture()
+                DragGesture(minimumDistance: 20)
                     .updating($isDragging) { _, state, _ in
                         state = true
                     }
                     .onChanged { value in
-                        dragOffset = value.translation.width
+                        // 限制拖动范围，提升性能
+                        dragOffset = min(max(value.translation.width, -geometry.size.width), geometry.size.width)
                     }
                     .onEnded { value in
                         let threshold = geometry.size.width / 3
+                        let velocity = value.predictedEndTranslation.width - value.translation.width
                         
-                        withAnimation(.spring()) {
-                            if value.translation.width > threshold {
+                        // 使用更快的动画
+                        withAnimation(.easeOut(duration: 0.25)) {
+                            if value.translation.width > threshold || velocity > 500 {
                                 // Swipe right - previous page
                                 viewModel.previousPage()
-                            } else if value.translation.width < -threshold {
+                            } else if value.translation.width < -threshold || velocity < -500 {
                                 // Swipe left - next page
                                 viewModel.nextPage()
                             }
@@ -77,6 +84,7 @@ struct PagedReaderView: View {
                 .accessibilityAddTraits(.isStaticText)
         }
         .scrollDisabled(true)
+        .id(page.id) // 帮助 SwiftUI 识别页面变化，减少重绘
     }
     
     private func handleTap(at location: CGPoint, in size: CGSize) {

@@ -13,6 +13,9 @@ class PaginationEngine {
     ) -> [Page] {
         var pages: [Page] = []
         
+        // 性能优化：限制最大分页数
+        let maxPages = 1000
+        
         // Create attributed string with formatting
         let attributedString = createAttributedString(
             text: text,
@@ -28,7 +31,10 @@ class PaginationEngine {
         let textLength = attributedString.length
         var pageNumber = 1
         
-        while currentPosition < textLength {
+        // 预分配数组容量，减少重新分配
+        pages.reserveCapacity(min(textLength / 1000, maxPages))
+        
+        while currentPosition < textLength && pages.count < maxPages {
             // Create path for the page
             let path = CGPath(rect: CGRect(origin: .zero, size: pageSize), transform: nil)
             
