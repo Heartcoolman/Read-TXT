@@ -49,11 +49,11 @@ jobs:
     
     - name: Create IPA
       run: |
-        # Find the .app bundle
-        APP_PATH=$(find ./build/Build/Products/Release-iphoneos -name "TxtReader.app" -type d | head -1)
+        # Find the .app bundle (use wildcard to catch any name)
+        APP_PATH=$(find ./build/Build/Products/Release-iphoneos -name "*.app" -type d | head -1)
         
         if [ -z "$APP_PATH" ]; then
-          echo "Error: TxtReader.app not found"
+          echo "Error: No .app bundle found"
           echo "Searching in entire build directory:"
           find ./build -name "*.app" -type d
           exit 1
