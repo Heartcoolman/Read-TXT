@@ -7,6 +7,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: macos-latest
@@ -43,32 +46,58 @@ jobs:
     
     - name: Debug - List build output
       run: |
-        echo "Listing build directory:"
-        ls -la ./build/Build/Products/Release-iphoneos/ || echo "Directory not found"
+        echo "========================================="
+        echo "Listing build directory structure:"
+        echo "========================================="
+        ls -la ./build/Build/Products/ || echo "Products directory not found"
+        echo ""
+        echo "Searching for all .app bundles:"
         find ./build -name "*.app" -type d || echo "No .app found"
+        echo ""
+        echo "Complete build tree:"
+        ls -R ./build/Build/Products/ || echo "Cannot list Products"
     
     - name: Create IPA
       run: |
-        # Find the .app bundle (use wildcard to catch any name)
-        APP_PATH=$(find ./build/Build/Products/Release-iphoneos -name "*.app" -type d | head -1)
+        echo "========================================="
+        echo "Creating IPA package"
+        echo "========================================="
+        
+        # Search for .app bundle in entire build directory
+        APP_PATH=$(find ./build -name "*.app" -type d | head -1)
         
         if [ -z "$APP_PATH" ]; then
-          echo "Error: No .app bundle found"
-          echo "Searching in entire build directory:"
-          find ./build -name "*.app" -type d
+          echo "❌ Error: No .app bundle found in build directory"
+          echo ""
+          echo "Build may have failed. Check previous steps for errors."
+          echo "Listing entire build directory:"
+          ls -R ./build || echo "Build directory is empty"
           exit 1
         fi
         
-        echo "Found app at: $APP_PATH"
+        echo "✅ Found app bundle at: $APP_PATH"
+        
+        # Get app name
+        APP_NAME=$(basename "$APP_PATH")
+        echo "📱 App name: $APP_NAME"
         
         # Create IPA
         mkdir -p Payload
         cp -R "$APP_PATH" Payload/
-        zip -r TxtReader-unsigned.ipa Payload
+        
+        echo "📦 Creating IPA archive..."
+        cd Payload
+        zip -r ../TxtReader-unsigned.ipa *
+        cd ..
         rm -rf Payload
         
-        echo "IPA created successfully"
+        echo "✅ IPA created successfully"
         ls -lh TxtReader-unsigned.ipa
+        
+        # Verify IPA contents
+        echo ""
+        echo "IPA contents:"
+        unzip -l TxtReader-unsigned.ipa | head -20
     
     - name: Upload IPA
       uses: actions/upload-artifact@v4
