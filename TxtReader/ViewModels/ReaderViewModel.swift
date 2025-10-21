@@ -323,7 +323,6 @@ class ReaderViewModel: ObservableObject {
     var estimatedTimeRemaining: TimeInterval {
         guard !pages.isEmpty, currentPageIndex < pages.count else { return 0 }
         
-        let remainingPages = pages.count - currentPageIndex
         let remainingCharacters = pages[currentPageIndex...].reduce(0) { $0 + $1.text.count }
         
         return PaginationEngine.estimateReadingTime(characterCount: remainingCharacters)
