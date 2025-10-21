@@ -9,6 +9,12 @@ class WebDAVClient {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 30
         config.timeoutIntervalForResource = 300
+        config.waitsForConnectivity = true
+        config.allowsCellularAccess = true
+        config.httpAdditionalHeaders = [
+            "User-Agent": "TxtReader/1.0",
+            "Accept": "*/*"
+        ]
         self.session = URLSession(configuration: config)
         self.account = account
         self.password = password
@@ -48,7 +54,11 @@ class WebDAVClient {
             throw WebDAVError.invalidResponse
         }
         
+        // WebDAV PROPFIND should return 207 Multi-Status
         guard (200...299).contains(httpResponse.statusCode) else {
+            if httpResponse.statusCode == 401 {
+                throw WebDAVError.authenticationFailed
+            }
             throw WebDAVError.httpError(statusCode: httpResponse.statusCode)
         }
         
