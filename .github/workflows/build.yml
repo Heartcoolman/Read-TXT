@@ -1,0 +1,96 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+    
+    - name: Show Xcode version
+      run: xcodebuild -version
+    
+    - name: Build project
+      run: |
+        xcodebuild clean build \
+          -project TxtReader.xcodeproj \
+          -scheme TxtReader \
+          -sdk iphoneos \
+          -configuration Release \
+          -derivedDataPath ./build \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+    
+    - name: Create IPA
+      run: |
+        mkdir -p Payload
+        cp -r ./build/Build/Products/Release-iphoneos/TxtReader.app Payload/
+        zip -r TxtReader-unsigned.ipa Payload
+        rm -rf Payload
+    
+    - name: Upload IPA
+      uses: actions/upload-artifact@v4
+      with:
+        name: TxtReader-unsigned
+        path: TxtReader-unsigned.ipa
+        retention-days: 30
+    
+    - name: Create Release
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v${{ github.run_number }}
+        name: Release v${{ github.run_number }}
+        body: |
+          ## TXT阅读器 - 未签名版本
+          
+          这是自动构建的未签名 IPA 文件。
+          
+          ### 安装方法
+          
+          1. **使用 AltStore**:
+             - 在 iPad 上安装 AltStore
+             - 下载 IPA 文件
+             - 通过 AltStore 安装
+          
+          2. **使用 Sideloadly**:
+             - 在电脑上安装 Sideloadly
+             - 连接 iPad
+             - 使用 Apple ID 签名并安装
+          
+          3. **使用 TrollStore** (如果已越狱):
+             - 直接安装 IPA 文件
+          
+          ### 功能特性
+          
+          - ✅ WebDAV 在线阅读
+          - ✅ 智能编码识别（支持 UTF-8、GBK、Big5 等）
+          - ✅ 分页/滚动双模式
+          - ✅ 自动章节识别
+          - ✅ 书签和标注
+          - ✅ 全文搜索
+          - ✅ TTS 朗读
+          - ✅ iPad 分屏支持
+          - ✅ 键盘快捷键
+          
+          构建时间: ${{ github.event.head_commit.timestamp }}
+        files: TxtReader-unsigned.ipa
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
