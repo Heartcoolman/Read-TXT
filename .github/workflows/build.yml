@@ -29,24 +29,46 @@ jobs:
     
     - name: Build project
       run: |
-        xcodebuild archive \
+        xcodebuild build \
           -project TxtReader.xcodeproj \
           -scheme TxtReader \
           -sdk iphoneos \
           -configuration Release \
-          -archivePath ./build/TxtReader.xcarchive \
+          -derivedDataPath ./build \
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO \
           CODE_SIGNING_ALLOWED=NO \
           DEVELOPMENT_TEAM="" \
           ONLY_ACTIVE_ARCH=NO
     
-    - name: Export Archive to IPA
+    - name: Debug - List build output
       run: |
+        echo "Listing build directory:"
+        ls -la ./build/Build/Products/Release-iphoneos/ || echo "Directory not found"
+        find ./build -name "*.app" -type d || echo "No .app found"
+    
+    - name: Create IPA
+      run: |
+        # Find the .app bundle
+        APP_PATH=$(find ./build/Build/Products/Release-iphoneos -name "TxtReader.app" -type d | head -1)
+        
+        if [ -z "$APP_PATH" ]; then
+          echo "Error: TxtReader.app not found"
+          echo "Searching in entire build directory:"
+          find ./build -name "*.app" -type d
+          exit 1
+        fi
+        
+        echo "Found app at: $APP_PATH"
+        
+        # Create IPA
         mkdir -p Payload
-        cp -R ./build/TxtReader.xcarchive/Products/Applications/TxtReader.app Payload/
+        cp -R "$APP_PATH" Payload/
         zip -r TxtReader-unsigned.ipa Payload
         rm -rf Payload
+        
+        echo "IPA created successfully"
+        ls -lh TxtReader-unsigned.ipa
     
     - name: Upload IPA
       uses: actions/upload-artifact@v4
