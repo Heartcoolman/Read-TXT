@@ -7,23 +7,85 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A1000001000000000000001 /* TxtReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000001000000000000001 /* TxtReaderApp.swift */; };
-		A1000002000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000002000000000000001 /* ContentView.swift */; };
-		A1000003000000000000001 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000003000000000000001 /* Book.swift */; };
-		A1000004000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1000004000000000000001 /* Assets.xcassets */; };
+		F001 /* TxtReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = R001 /* TxtReaderApp.swift */; };
+		F002 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = R002 /* Book.swift */; };
+		F003 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = R003 /* Bookmark.swift */; };
+		F004 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = R004 /* Chapter.swift */; };
+		F005 /* ReadingProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = R005 /* ReadingProgress.swift */; };
+		F006 /* ReaderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = R006 /* ReaderSettings.swift */; };
+		F007 /* WebDAVAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = R007 /* WebDAVAccount.swift */; };
+		F008 /* WebDAVClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = R008 /* WebDAVClient.swift */; };
+		F009 /* WebDAVCredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = R009 /* WebDAVCredentialManager.swift */; };
+		F010 /* EncodingDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = R010 /* EncodingDetector.swift */; };
+		F011 /* TextDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = R011 /* TextDecoder.swift */; };
+		F012 /* ChapterDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = R012 /* ChapterDetector.swift */; };
+		F013 /* PaginationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = R013 /* PaginationEngine.swift */; };
+		F014 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = R014 /* StreamReader.swift */; };
+		F015 /* TextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = R015 /* TextParser.swift */; };
+		F016 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = R016 /* DataManager.swift */; };
+		F017 /* ReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = R017 /* ReaderViewModel.swift */; };
+		F018 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = R018 /* SettingsViewModel.swift */; };
+		F019 /* WebDAVViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = R019 /* WebDAVViewModel.swift */; };
+		F020 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R020 /* ContentView.swift */; };
+		F021 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R021 /* LibraryView.swift */; };
+		F022 /* WebDAVBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R022 /* WebDAVBrowserView.swift */; };
+		F023 /* PagedReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R023 /* PagedReaderView.swift */; };
+		F024 /* ReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R024 /* ReaderView.swift */; };
+		F025 /* ScrollReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R025 /* ScrollReaderView.swift */; };
+		F026 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R026 /* SearchView.swift */; };
+		F027 /* TableOfContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R027 /* TableOfContentsView.swift */; };
+		F028 /* EncodingPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R028 /* EncodingPickerView.swift */; };
+		F029 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R029 /* SettingsView.swift */; };
+		F030 /* ThemeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R030 /* ThemeSettingsView.swift */; };
+		F031 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R031 /* AnnotationView.swift */; };
+		F032 /* BookmarkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R032 /* BookmarkListView.swift */; };
+		F033 /* AccessibilityHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = R033 /* AccessibilityHelpers.swift */; };
+		F034 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = R034 /* KeyboardShortcuts.swift */; };
+		F999 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = R999 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A2000001000000000000001 /* TxtReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TxtReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1000001000000000000001 /* TxtReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxtReaderApp.swift; sourceTree = "<group>"; };
-		B1000002000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Main/ContentView.swift"; sourceTree = "<group>"; };
-		B1000003000000000000001 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/Book.swift"; sourceTree = "<group>"; };
-		B1000004000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B1000005000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		APP /* TxtReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TxtReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		R001 /* TxtReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TxtReaderApp.swift"; sourceTree = "<group>"; };
+		R002 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/Book.swift"; sourceTree = "<group>"; };
+		R003 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/Bookmark.swift"; sourceTree = "<group>"; };
+		R004 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/Chapter.swift"; sourceTree = "<group>"; };
+		R005 /* ReadingProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/ReadingProgress.swift"; sourceTree = "<group>"; };
+		R006 /* ReaderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/ReaderSettings.swift"; sourceTree = "<group>"; };
+		R007 /* WebDAVAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/WebDAVAccount.swift"; sourceTree = "<group>"; };
+		R008 /* WebDAVClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/WebDAV/WebDAVClient.swift"; sourceTree = "<group>"; };
+		R009 /* WebDAVCredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/WebDAV/WebDAVCredentialManager.swift"; sourceTree = "<group>"; };
+		R010 /* EncodingDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Encoding/EncodingDetector.swift"; sourceTree = "<group>"; };
+		R011 /* TextDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Encoding/TextDecoder.swift"; sourceTree = "<group>"; };
+		R012 /* ChapterDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Reader/ChapterDetector.swift"; sourceTree = "<group>"; };
+		R013 /* PaginationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Reader/PaginationEngine.swift"; sourceTree = "<group>"; };
+		R014 /* StreamReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Reader/StreamReader.swift"; sourceTree = "<group>"; };
+		R015 /* TextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Reader/TextParser.swift"; sourceTree = "<group>"; };
+		R016 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Storage/DataManager.swift"; sourceTree = "<group>"; };
+		R017 /* ReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/ReaderViewModel.swift"; sourceTree = "<group>"; };
+		R018 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/SettingsViewModel.swift"; sourceTree = "<group>"; };
+		R019 /* WebDAVViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/WebDAVViewModel.swift"; sourceTree = "<group>"; };
+		R020 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Main/ContentView.swift"; sourceTree = "<group>"; };
+		R021 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Main/LibraryView.swift"; sourceTree = "<group>"; };
+		R022 /* WebDAVBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Main/WebDAVBrowserView.swift"; sourceTree = "<group>"; };
+		R023 /* PagedReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Reader/PagedReaderView.swift"; sourceTree = "<group>"; };
+		R024 /* ReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Reader/ReaderView.swift"; sourceTree = "<group>"; };
+		R025 /* ScrollReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Reader/ScrollReaderView.swift"; sourceTree = "<group>"; };
+		R026 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Reader/SearchView.swift"; sourceTree = "<group>"; };
+		R027 /* TableOfContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Reader/TableOfContentsView.swift"; sourceTree = "<group>"; };
+		R028 /* EncodingPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/EncodingPickerView.swift"; sourceTree = "<group>"; };
+		R029 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/SettingsView.swift"; sourceTree = "<group>"; };
+		R030 /* ThemeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/ThemeSettingsView.swift"; sourceTree = "<group>"; };
+		R031 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Components/AnnotationView.swift"; sourceTree = "<group>"; };
+		R032 /* BookmarkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Components/BookmarkListView.swift"; sourceTree = "<group>"; };
+		R033 /* AccessibilityHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utilities/AccessibilityHelpers.swift"; sourceTree = "<group>"; };
+		R034 /* KeyboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utilities/KeyboardShortcuts.swift"; sourceTree = "<group>"; };
+		R999 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		INFO /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A3000001000000000000001 /* Frameworks */ = {
+		FRAMEWORKS = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,44 +95,179 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A4000001000000000000001 = {
+		MAINGROUP = {
 			isa = PBXGroup;
 			children = (
-				A4000002000000000000001 /* TxtReader */,
-				A4000003000000000000001 /* Products */,
+				TXTREADER,
+				PRODUCTS,
 			);
 			sourceTree = "<group>";
 		};
-		A4000002000000000000001 /* TxtReader */ = {
+		PRODUCTS = {
 			isa = PBXGroup;
 			children = (
-				B1000001000000000000001 /* TxtReaderApp.swift */,
-				B1000002000000000000001 /* ContentView.swift */,
-				B1000003000000000000001 /* Book.swift */,
-				B1000004000000000000001 /* Assets.xcassets */,
-				B1000005000000000000001 /* Info.plist */,
+				APP,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		TXTREADER = {
+			isa = PBXGroup;
+			children = (
+				R001,
+				MODELS,
+				SERVICES,
+				VIEWMODELS,
+				VIEWS,
+				UTILITIES,
+				R999,
+				INFO,
 			);
 			path = TxtReader;
 			sourceTree = "<group>";
 		};
-		A4000003000000000000001 /* Products */ = {
+		MODELS = {
 			isa = PBXGroup;
 			children = (
-				A2000001000000000000001 /* TxtReader.app */,
+				R002,
+				R003,
+				R004,
+				R005,
+				R006,
+				R007,
 			);
-			name = Products;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		SERVICES = {
+			isa = PBXGroup;
+			children = (
+				WEBDAV,
+				ENCODING,
+				READER,
+				STORAGE,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		WEBDAV = {
+			isa = PBXGroup;
+			children = (
+				R008,
+				R009,
+			);
+			path = WebDAV;
+			sourceTree = "<group>";
+		};
+		ENCODING = {
+			isa = PBXGroup;
+			children = (
+				R010,
+				R011,
+			);
+			path = Encoding;
+			sourceTree = "<group>";
+		};
+		READER = {
+			isa = PBXGroup;
+			children = (
+				R012,
+				R013,
+				R014,
+				R015,
+			);
+			path = Reader;
+			sourceTree = "<group>";
+		};
+		STORAGE = {
+			isa = PBXGroup;
+			children = (
+				R016,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		VIEWMODELS = {
+			isa = PBXGroup;
+			children = (
+				R017,
+				R018,
+				R019,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		VIEWS = {
+			isa = PBXGroup;
+			children = (
+				MAIN,
+				READERVIEWS,
+				SETTINGS,
+				COMPONENTS,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		MAIN = {
+			isa = PBXGroup;
+			children = (
+				R020,
+				R021,
+				R022,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		READERVIEWS = {
+			isa = PBXGroup;
+			children = (
+				R023,
+				R024,
+				R025,
+				R026,
+				R027,
+			);
+			path = Reader;
+			sourceTree = "<group>";
+		};
+		SETTINGS = {
+			isa = PBXGroup;
+			children = (
+				R028,
+				R029,
+				R030,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		COMPONENTS = {
+			isa = PBXGroup;
+			children = (
+				R031,
+				R032,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		UTILITIES = {
+			isa = PBXGroup;
+			children = (
+				R033,
+				R034,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A5000001000000000000001 /* TxtReader */ = {
+		TARGET = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A6000001000000000000001 /* Build configuration list for PBXNativeTarget "TxtReader" */;
+			buildConfigurationList = TARGETCONFIG;
 			buildPhases = (
-				A7000001000000000000001 /* Sources */,
-				A3000001000000000000001 /* Frameworks */,
-				A8000001000000000000001 /* Resources */,
+				SOURCES,
+				FRAMEWORKS,
+				RESOURCES,
 			);
 			buildRules = (
 			);
@@ -78,25 +275,20 @@
 			);
 			name = TxtReader;
 			productName = TxtReader;
-			productReference = A2000001000000000000001 /* TxtReader.app */;
+			productReference = APP;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A9000001000000000000001 /* Project object */ = {
+		PROJECT = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
-				TargetAttributes = {
-					A5000001000000000000001 = {
-						CreatedOnToolsVersion = 15.4;
-					};
-				};
 			};
-			buildConfigurationList = A6000002000000000000001 /* Build configuration list for PBXProject "TxtReader" */;
+			buildConfigurationList = PROJECTCONFIG;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -104,46 +296,76 @@
 				en,
 				Base,
 			);
-			mainGroup = A4000001000000000000001;
-			productRefGroup = A4000003000000000000001 /* Products */;
+			mainGroup = MAINGROUP;
+			productRefGroup = PRODUCTS;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A5000001000000000000001 /* TxtReader */,
+				TARGET,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A8000001000000000000001 /* Resources */ = {
+		RESOURCES = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1000004000000000000001 /* Assets.xcassets in Resources */,
+				F999,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A7000001000000000000001 /* Sources */ = {
+		SOURCES = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1000001000000000000001 /* TxtReaderApp.swift in Sources */,
-				A1000002000000000000001 /* ContentView.swift in Sources */,
-				A1000003000000000000001 /* Book.swift in Sources */,
+				F001,
+				F002,
+				F003,
+				F004,
+				F005,
+				F006,
+				F007,
+				F008,
+				F009,
+				F010,
+				F011,
+				F012,
+				F013,
+				F014,
+				F015,
+				F016,
+				F017,
+				F018,
+				F019,
+				F020,
+				F021,
+				F022,
+				F023,
+				F024,
+				F025,
+				F026,
+				F027,
+				F028,
+				F029,
+				F030,
+				F031,
+				F032,
+				F033,
+				F034,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		AB000001000000000000001 /* Debug */ = {
+		DEBUGPROJECT = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -176,14 +398,13 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
-					"$(inherited)",
+					"$$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -197,16 +418,15 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $$(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		AB000002000000000000001 /* Release */ = {
+		RELEASEPROJECT = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -239,7 +459,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -258,7 +477,7 @@
 			};
 			name = Release;
 		};
-		AB000003000000000000001 /* Debug */ = {
+		DEBUGTARGET = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -276,12 +495,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
+					"$$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.txtreader.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -290,7 +509,7 @@
 			};
 			name = Debug;
 		};
-		AB000004000000000000001 /* Release */ = {
+		RELEASETARGET = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -308,12 +527,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
+					"$$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.txtreader.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -325,26 +544,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A6000001000000000000001 /* Build configuration list for PBXNativeTarget "TxtReader" */ = {
+		PROJECTCONFIG = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AB000003000000000000001 /* Debug */,
-				AB000004000000000000001 /* Release */,
+				DEBUGPROJECT,
+				RELEASEPROJECT,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A6000002000000000000001 /* Build configuration list for PBXProject "TxtReader" */ = {
+		TARGETCONFIG = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AB000001000000000000001 /* Debug */,
-				AB000002000000000000001 /* Release */,
+				DEBUGTARGET,
+				RELEASETARGET,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A9000001000000000000001 /* Project object */;
+	rootObject = PROJECT;
 }
-
