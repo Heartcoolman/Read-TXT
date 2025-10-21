@@ -16,7 +16,9 @@ class WebDAVClient {
     
     // MARK: - List Directory
     func listDirectory(path: String) async throws -> [WebDAVItem] {
-        let url = buildURL(path: path)
+        guard let url = buildURL(path: path) else {
+            throw WebDAVError.parseError("无效的服务器地址")
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "PROPFIND"
         request.setValue("1", forHTTPHeaderField: "Depth")
@@ -55,7 +57,9 @@ class WebDAVClient {
     
     // MARK: - Download File
     func downloadFile(path: String, progressHandler: ((Double) -> Void)? = nil) async throws -> Data {
-        let url = buildURL(path: path)
+        guard let url = buildURL(path: path) else {
+            throw WebDAVError.parseError("无效的文件路径")
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         addAuthentication(to: &request)
@@ -75,7 +79,9 @@ class WebDAVClient {
     
     // MARK: - Stream Download (for large files)
     func streamDownload(path: String, chunkSize: Int = 1024 * 100) async throws -> AsyncThrowingStream<Data, Error> {
-        let url = buildURL(path: path)
+        guard let url = buildURL(path: path) else {
+            throw WebDAVError.parseError("无效的文件路径")
+        }
         
         return AsyncThrowingStream { continuation in
             Task {
@@ -113,8 +119,14 @@ class WebDAVClient {
     }
     
     // MARK: - Helper Methods
-    private func buildURL(path: String) -> URL {
+    private func buildURL(path: String) -> URL? {
         var urlString = account.serverURL
+        
+        // Ensure server URL has scheme
+        if !urlString.lowercased().hasPrefix("http://") && !urlString.lowercased().hasPrefix("https://") {
+            urlString = "https://" + urlString
+        }
+        
         if !urlString.hasSuffix("/") {
             urlString += "/"
         }
@@ -123,7 +135,8 @@ class WebDAVClient {
         } else {
             urlString += path
         }
-        return URL(string: urlString)!
+        
+        return URL(string: urlString)
     }
     
     private func addAuthentication(to request: inout URLRequest) {

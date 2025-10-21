@@ -138,7 +138,7 @@ class WebDAVViewModel: ObservableObject {
         
         let account = WebDAVAccount(name: name, serverURL: serverURL, username: username)
         
-        try DataManager.shared.saveWebDAVAccount(account, password: password, to: context)
+        try await DataManager.shared.saveWebDAVAccount(account, password: password, to: context)
         
         loadAccounts()
     }

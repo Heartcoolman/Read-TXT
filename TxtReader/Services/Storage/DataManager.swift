@@ -94,15 +94,17 @@ class DataManager {
     // MARK: - Save WebDAV Account
     @MainActor
     func saveWebDAVAccount(_ account: WebDAVAccount, password: String, to modelContext: ModelContext) throws {
-        modelContext.insert(account)
-        try modelContext.save()
-        
-        // Save password to keychain
+        // Save password to keychain first (before database)
+        // If this fails, we don't save to database, maintaining consistency
         try WebDAVCredentialManager.shared.saveCredentials(
             accountID: account.id,
             username: account.username,
             password: password
         )
+        
+        // Only save to database if keychain save succeeded
+        modelContext.insert(account)
+        try modelContext.save()
     }
     
     // MARK: - Delete WebDAV Account
