@@ -46,40 +46,40 @@
 
 /* Begin PBXFileReference section */
 		APP /* TxtReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TxtReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		R001 /* TxtReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TxtReaderApp.swift"; sourceTree = "<group>"; };
-		R002 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/Book.swift"; sourceTree = "<group>"; };
-		R003 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/Bookmark.swift"; sourceTree = "<group>"; };
-		R004 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/Chapter.swift"; sourceTree = "<group>"; };
-		R005 /* ReadingProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/ReadingProgress.swift"; sourceTree = "<group>"; };
-		R006 /* ReaderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/ReaderSettings.swift"; sourceTree = "<group>"; };
-		R007 /* WebDAVAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/WebDAVAccount.swift"; sourceTree = "<group>"; };
-		R008 /* WebDAVClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/WebDAV/WebDAVClient.swift"; sourceTree = "<group>"; };
-		R009 /* WebDAVCredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/WebDAV/WebDAVCredentialManager.swift"; sourceTree = "<group>"; };
-		R010 /* EncodingDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Encoding/EncodingDetector.swift"; sourceTree = "<group>"; };
-		R011 /* TextDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Encoding/TextDecoder.swift"; sourceTree = "<group>"; };
-		R012 /* ChapterDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Reader/ChapterDetector.swift"; sourceTree = "<group>"; };
-		R013 /* PaginationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Reader/PaginationEngine.swift"; sourceTree = "<group>"; };
-		R014 /* StreamReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Reader/StreamReader.swift"; sourceTree = "<group>"; };
-		R015 /* TextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Reader/TextParser.swift"; sourceTree = "<group>"; };
-		R016 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/Storage/DataManager.swift"; sourceTree = "<group>"; };
-		R017 /* ReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/ReaderViewModel.swift"; sourceTree = "<group>"; };
-		R018 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/SettingsViewModel.swift"; sourceTree = "<group>"; };
-		R019 /* WebDAVViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/WebDAVViewModel.swift"; sourceTree = "<group>"; };
-		R020 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Main/ContentView.swift"; sourceTree = "<group>"; };
-		R021 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Main/LibraryView.swift"; sourceTree = "<group>"; };
-		R022 /* WebDAVBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Main/WebDAVBrowserView.swift"; sourceTree = "<group>"; };
-		R023 /* PagedReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Reader/PagedReaderView.swift"; sourceTree = "<group>"; };
-		R024 /* ReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Reader/ReaderView.swift"; sourceTree = "<group>"; };
-		R025 /* ScrollReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Reader/ScrollReaderView.swift"; sourceTree = "<group>"; };
-		R026 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Reader/SearchView.swift"; sourceTree = "<group>"; };
-		R027 /* TableOfContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Reader/TableOfContentsView.swift"; sourceTree = "<group>"; };
-		R028 /* EncodingPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/EncodingPickerView.swift"; sourceTree = "<group>"; };
-		R029 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/SettingsView.swift"; sourceTree = "<group>"; };
-		R030 /* ThemeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/ThemeSettingsView.swift"; sourceTree = "<group>"; };
-		R031 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Components/AnnotationView.swift"; sourceTree = "<group>"; };
-		R032 /* BookmarkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Components/BookmarkListView.swift"; sourceTree = "<group>"; };
-		R033 /* AccessibilityHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utilities/AccessibilityHelpers.swift"; sourceTree = "<group>"; };
-		R034 /* KeyboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utilities/KeyboardShortcuts.swift"; sourceTree = "<group>"; };
+		R001 /* TxtReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxtReaderApp.swift; sourceTree = "<group>"; };
+		R002 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Book.swift; sourceTree = "<group>"; };
+		R003 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Bookmark.swift; sourceTree = "<group>"; };
+		R004 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Chapter.swift; sourceTree = "<group>"; };
+		R005 /* ReadingProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/ReadingProgress.swift; sourceTree = "<group>"; };
+		R006 /* ReaderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/ReaderSettings.swift; sourceTree = "<group>"; };
+		R007 /* WebDAVAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/WebDAVAccount.swift; sourceTree = "<group>"; };
+		R008 /* WebDAVClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/WebDAV/WebDAVClient.swift; sourceTree = "<group>"; };
+		R009 /* WebDAVCredentialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/WebDAV/WebDAVCredentialManager.swift; sourceTree = "<group>"; };
+		R010 /* EncodingDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/Encoding/EncodingDetector.swift; sourceTree = "<group>"; };
+		R011 /* TextDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/Encoding/TextDecoder.swift; sourceTree = "<group>"; };
+		R012 /* ChapterDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/Reader/ChapterDetector.swift; sourceTree = "<group>"; };
+		R013 /* PaginationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/Reader/PaginationEngine.swift; sourceTree = "<group>"; };
+		R014 /* StreamReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/Reader/StreamReader.swift; sourceTree = "<group>"; };
+		R015 /* TextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/Reader/TextParser.swift; sourceTree = "<group>"; };
+		R016 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/Storage/DataManager.swift; sourceTree = "<group>"; };
+		R017 /* ReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/ReaderViewModel.swift; sourceTree = "<group>"; };
+		R018 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/SettingsViewModel.swift; sourceTree = "<group>"; };
+		R019 /* WebDAVViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/WebDAVViewModel.swift; sourceTree = "<group>"; };
+		R020 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Main/ContentView.swift; sourceTree = "<group>"; };
+		R021 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Main/LibraryView.swift; sourceTree = "<group>"; };
+		R022 /* WebDAVBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Main/WebDAVBrowserView.swift; sourceTree = "<group>"; };
+		R023 /* PagedReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Reader/PagedReaderView.swift; sourceTree = "<group>"; };
+		R024 /* ReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Reader/ReaderView.swift; sourceTree = "<group>"; };
+		R025 /* ScrollReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Reader/ScrollReaderView.swift; sourceTree = "<group>"; };
+		R026 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Reader/SearchView.swift; sourceTree = "<group>"; };
+		R027 /* TableOfContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Reader/TableOfContentsView.swift; sourceTree = "<group>"; };
+		R028 /* EncodingPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Settings/EncodingPickerView.swift; sourceTree = "<group>"; };
+		R029 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Settings/SettingsView.swift; sourceTree = "<group>"; };
+		R030 /* ThemeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Settings/ThemeSettingsView.swift; sourceTree = "<group>"; };
+		R031 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/AnnotationView.swift; sourceTree = "<group>"; };
+		R032 /* BookmarkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/BookmarkListView.swift; sourceTree = "<group>"; };
+		R033 /* AccessibilityHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/AccessibilityHelpers.swift; sourceTree = "<group>"; };
+		R034 /* KeyboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/KeyboardShortcuts.swift; sourceTree = "<group>"; };
 		R999 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		INFO /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,147 +115,43 @@
 			isa = PBXGroup;
 			children = (
 				R001,
-				MODELS,
-				SERVICES,
-				VIEWMODELS,
-				VIEWS,
-				UTILITIES,
-				R999,
-				INFO,
-			);
-			path = TxtReader;
-			sourceTree = "<group>";
-		};
-		MODELS = {
-			isa = PBXGroup;
-			children = (
 				R002,
 				R003,
 				R004,
 				R005,
 				R006,
 				R007,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		SERVICES = {
-			isa = PBXGroup;
-			children = (
-				WEBDAV,
-				ENCODING,
-				READER,
-				STORAGE,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		WEBDAV = {
-			isa = PBXGroup;
-			children = (
 				R008,
 				R009,
-			);
-			path = WebDAV;
-			sourceTree = "<group>";
-		};
-		ENCODING = {
-			isa = PBXGroup;
-			children = (
 				R010,
 				R011,
-			);
-			path = Encoding;
-			sourceTree = "<group>";
-		};
-		READER = {
-			isa = PBXGroup;
-			children = (
 				R012,
 				R013,
 				R014,
 				R015,
-			);
-			path = Reader;
-			sourceTree = "<group>";
-		};
-		STORAGE = {
-			isa = PBXGroup;
-			children = (
 				R016,
-			);
-			path = Storage;
-			sourceTree = "<group>";
-		};
-		VIEWMODELS = {
-			isa = PBXGroup;
-			children = (
 				R017,
 				R018,
 				R019,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		VIEWS = {
-			isa = PBXGroup;
-			children = (
-				MAIN,
-				READERVIEWS,
-				SETTINGS,
-				COMPONENTS,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		MAIN = {
-			isa = PBXGroup;
-			children = (
 				R020,
 				R021,
 				R022,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		READERVIEWS = {
-			isa = PBXGroup;
-			children = (
 				R023,
 				R024,
 				R025,
 				R026,
 				R027,
-			);
-			path = Reader;
-			sourceTree = "<group>";
-		};
-		SETTINGS = {
-			isa = PBXGroup;
-			children = (
 				R028,
 				R029,
 				R030,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		COMPONENTS = {
-			isa = PBXGroup;
-			children = (
 				R031,
 				R032,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		UTILITIES = {
-			isa = PBXGroup;
-			children = (
 				R033,
 				R034,
+				R999,
+				INFO,
 			);
-			path = Utilities;
+			path = TxtReader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
