@@ -41,6 +41,7 @@
 		F032 /* BookmarkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = R032 /* BookmarkListView.swift */; };
 		F033 /* AccessibilityHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = R033 /* AccessibilityHelpers.swift */; };
 		F034 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = R034 /* KeyboardShortcuts.swift */; };
+		F035 /* WebDAVServiceGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = R035 /* WebDAVServiceGuide.swift */; };
 		F999 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = R999 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		R032 /* BookmarkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/BookmarkListView.swift; sourceTree = "<group>"; };
 		R033 /* AccessibilityHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/AccessibilityHelpers.swift; sourceTree = "<group>"; };
 		R034 /* KeyboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities/KeyboardShortcuts.swift; sourceTree = "<group>"; };
+		R035 /* WebDAVServiceGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Main/WebDAVServiceGuide.swift; sourceTree = "<group>"; };
 		R999 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		INFO /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +150,7 @@
 				R032,
 				R033,
 				R034,
+				R035,
 				R999,
 				INFO,
 			);
@@ -252,6 +255,7 @@
 				F032,
 				F033,
 				F034,
+				F035,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
