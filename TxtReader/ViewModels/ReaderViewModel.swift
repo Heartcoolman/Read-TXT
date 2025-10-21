@@ -88,9 +88,12 @@ class ReaderViewModel: ObservableObject {
             height: screenSize.height - settings.verticalPadding * 2
         )
         
+        // Capture fullText before entering detached task
+        let text = fullText
+        
         pages = await Task.detached {
             PaginationEngine.paginate(
-                text: self.fullText,
+                text: text,
                 pageSize: pageSize,
                 font: font,
                 lineSpacing: settings.lineSpacing,
@@ -153,18 +156,22 @@ class ReaderViewModel: ObservableObject {
     }
     
     private func performSearch(query: String) async -> [SearchResult] {
+        // Capture main-actor-isolated properties before detached task
+        let text = fullText
+        let chapters = chapters
+        
         return await Task.detached {
             var results: [SearchResult] = []
             let lowercasedQuery = query.lowercased()
             
-            let lines = self.fullText.components(separatedBy: .newlines)
+            let lines = text.components(separatedBy: .newlines)
             var position = 0
             
             for (lineIndex, line) in lines.enumerated() {
                 if line.lowercased().contains(lowercasedQuery) {
-                    let chapterIndex = ChapterDetector.getChapterIndex(at: position, in: self.chapters)
-                    let chapterTitle = chapterIndex < self.chapters.count 
-                        ? self.chapters[chapterIndex].title 
+                    let chapterIndex = ChapterDetector.getChapterIndex(at: position, in: chapters)
+                    let chapterTitle = chapterIndex < chapters.count 
+                        ? chapters[chapterIndex].title 
                         : "未知章节"
                     
                     results.append(SearchResult(
