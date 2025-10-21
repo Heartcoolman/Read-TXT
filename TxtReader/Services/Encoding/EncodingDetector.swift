@@ -15,7 +15,7 @@ class EncodingDetector {
         (String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.big5.rawValue))), "Big5"),
         (String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.shiftJIS.rawValue))), "Shift-JIS"),
         (.isoLatin1, "ISO-8859-1"),
-        (String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(kCFStringEncodingWindowsLatin1))), "Windows-1252"),
+        (String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(0x0500)), "Windows-1252"),
         (String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.KOI8_R.rawValue))), "KOI8-R"),
         (String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.EUC_KR.rawValue))), "EUC-KR"),
     ]
