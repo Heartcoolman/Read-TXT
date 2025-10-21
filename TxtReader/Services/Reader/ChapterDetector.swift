@@ -110,8 +110,9 @@ class ChapterDetector {
             // Try to find a paragraph break near the target position
             var endPosition = targetEnd
             if targetEnd < totalLength {
-                let searchRange = text.index(text.startIndex, offsetBy: max(0, targetEnd - 500))
-                    ..<text.index(text.startIndex, offsetBy: min(totalLength, targetEnd + 500))
+                let startIndex = text.index(text.startIndex, offsetBy: max(0, targetEnd - 500))
+                let endIndex = text.index(text.startIndex, offsetBy: min(totalLength, targetEnd + 500))
+                let searchRange = startIndex..<endIndex
                 
                 if let range = text[searchRange].range(of: "\n\n") {
                     endPosition = text.distance(from: text.startIndex, to: range.upperBound)

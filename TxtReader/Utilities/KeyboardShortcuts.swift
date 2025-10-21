@@ -33,55 +33,68 @@ extension View {
         dismiss: DismissAction
     ) -> some View {
         self
-            // Navigation
-            .keyboardShortcut(KeyboardShortcuts.nextPage, modifiers: []) {
-                viewModel.nextPage()
-            }
-            .keyboardShortcut(KeyboardShortcuts.previousPage, modifiers: .shift) {
-                viewModel.previousPage()
-            }
-            .keyboardShortcut(.upArrow, modifiers: []) {
-                viewModel.previousPage()
-            }
-            .keyboardShortcut(.downArrow, modifiers: []) {
-                viewModel.nextPage()
-            }
-            .keyboardShortcut(.leftArrow, modifiers: []) {
-                viewModel.previousPage()
-            }
-            .keyboardShortcut(.rightArrow, modifiers: []) {
-                viewModel.nextPage()
-            }
-            
-            // Features
-            .keyboardShortcut(KeyboardShortcuts.search, modifiers: .command) {
-                showingSearch.wrappedValue = true
-            }
-            .keyboardShortcut(KeyboardShortcuts.tableOfContents, modifiers: .command) {
-                showingTableOfContents.wrappedValue = true
-            }
-            .keyboardShortcut(KeyboardShortcuts.bookmarks, modifiers: .command) {
-                showingBookmarks.wrappedValue = true
-            }
-            .keyboardShortcut(KeyboardShortcuts.settings, modifiers: .command) {
-                showingSettings.wrappedValue = true
-            }
-            
-            // Reading
-            .keyboardShortcut(KeyboardShortcuts.toggleMenu, modifiers: .command) {
-                showingMenu.wrappedValue.toggle()
-            }
-            .keyboardShortcut(KeyboardShortcuts.addBookmark, modifiers: .command) {
-                viewModel.addBookmark()
-            }
-            .keyboardShortcut(KeyboardShortcuts.toggleSpeech, modifiers: [.command, .shift]) {
-                viewModel.toggleSpeech()
-            }
-            
-            // Close
-            .keyboardShortcut(KeyboardShortcuts.closeReader, modifiers: .command) {
-                dismiss()
-            }
+            .background(
+                Group {
+                    // Navigation
+                    Button("") { viewModel.nextPage() }
+                        .keyboardShortcut(KeyboardShortcuts.nextPage, modifiers: [])
+                        .hidden()
+                    
+                    Button("") { viewModel.previousPage() }
+                        .keyboardShortcut(KeyboardShortcuts.previousPage, modifiers: .shift)
+                        .hidden()
+                    
+                    Button("") { viewModel.previousPage() }
+                        .keyboardShortcut(.upArrow, modifiers: [])
+                        .hidden()
+                    
+                    Button("") { viewModel.nextPage() }
+                        .keyboardShortcut(.downArrow, modifiers: [])
+                        .hidden()
+                    
+                    Button("") { viewModel.previousPage() }
+                        .keyboardShortcut(.leftArrow, modifiers: [])
+                        .hidden()
+                    
+                    Button("") { viewModel.nextPage() }
+                        .keyboardShortcut(.rightArrow, modifiers: [])
+                        .hidden()
+                    
+                    // Features
+                    Button("") { showingSearch.wrappedValue = true }
+                        .keyboardShortcut(KeyboardShortcuts.search, modifiers: .command)
+                        .hidden()
+                    
+                    Button("") { showingTableOfContents.wrappedValue = true }
+                        .keyboardShortcut(KeyboardShortcuts.tableOfContents, modifiers: .command)
+                        .hidden()
+                    
+                    Button("") { showingBookmarks.wrappedValue = true }
+                        .keyboardShortcut(KeyboardShortcuts.bookmarks, modifiers: .command)
+                        .hidden()
+                    
+                    Button("") { showingSettings.wrappedValue = true }
+                        .keyboardShortcut(KeyboardShortcuts.settings, modifiers: .command)
+                        .hidden()
+                    
+                    // Reading
+                    Button("") { showingMenu.wrappedValue.toggle() }
+                        .keyboardShortcut(KeyboardShortcuts.toggleMenu, modifiers: .command)
+                        .hidden()
+                    
+                    Button("") { viewModel.addBookmark() }
+                        .keyboardShortcut(KeyboardShortcuts.addBookmark, modifiers: .command)
+                        .hidden()
+                    
+                    Button("") { viewModel.toggleSpeech() }
+                        .keyboardShortcut(KeyboardShortcuts.toggleSpeech, modifiers: [.command, .shift])
+                        .hidden()
+                    
+                    // Close
+                    Button("") { dismiss() }
+                        .keyboardShortcut(KeyboardShortcuts.closeReader, modifiers: .command)
+                        .hidden()
+                }
+            )
     }
 }
-
