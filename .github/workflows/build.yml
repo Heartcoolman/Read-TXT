@@ -9,127 +9,116 @@ on:
 
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: macos-latest
     
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
       
-      - name: Setup Xcode
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: '15.2'
-      
-      - name: Show Xcode version
-        run: xcodebuild -version
-      
-      - name: Build Unsigned Archive
-        run: |
-          # 创建构建目录
-          mkdir -p build
-          
-          # 构建未签名的 Archive
-          xcodebuild archive \
-            -project TxtReader.xcodeproj \
-            -scheme TxtReader \
-            -sdk iphoneos \
-            -configuration Release \
-            -archivePath build/TxtReader.xcarchive \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
-            ONLY_ACTIVE_ARCH=NO
-          
-          echo "✅ Archive 构建完成"
-          echo "📦 位置: build/TxtReader.xcarchive"
-      
-      - name: Create App Bundle
-        run: |
-          # 从 xcarchive 中提取 .app
-          mkdir -p build/Payload
-          cp -R build/TxtReader.xcarchive/Products/Applications/TxtReader.app build/Payload/
-          
-          # 创建 IPA（未签名）
-          cd build
-          zip -r TxtReader-unsigned.ipa Payload
-          cd ..
-          
-          echo "✅ 未签名 IPA 创建完成"
-          echo "📦 位置: build/TxtReader-unsigned.ipa"
+    - name: Set up Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
     
-      - name: Upload Unsigned IPA
-        uses: actions/upload-artifact@v4
-        with:
-          name: TxtReader-Unsigned-IPA
-          path: build/TxtReader-unsigned.ipa
-          retention-days: 30
-          if-no-files-found: error
-      
-      - name: Upload xcarchive
-        uses: actions/upload-artifact@v4
-        with:
-          name: TxtReader-xcarchive
-          path: build/TxtReader.xcarchive
-          retention-days: 30
-          if-no-files-found: warn
-      
-      - name: Build Summary
-        run: |
-          echo "🎉 构建完成！"
-          echo ""
-          echo "📦 已生成以下文件："
-          echo "  • TxtReader-unsigned.ipa - 未签名的 IPA（需要自签名）"
-          echo "  • TxtReader.xcarchive - Xcode Archive（可在 Xcode 中导出）"
-          echo ""
-          echo "⚡ 下一步："
-          echo "  1. 下载 Artifacts"
-          echo "  2. 使用 AltStore/Sideloadly 签名并安装"
-          echo "  3. 或使用 TrollStore 直接安装"
-          echo ""
-          echo "📖 详见 INSTALLATION.md"
+    - name: Show Xcode version
+      run: xcodebuild -version
     
-      - name: Create Release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ github.run_number }}
-          name: Release v${{ github.run_number }}
-          body: |
-            ## TXT阅读器 - 未签名版本
-            
-            这是自动构建的未签名 IPA 文件。
-            
-            ### 安装方法
-            
-            1. **使用 AltStore**:
-               - 在 iPad 上安装 AltStore
-               - 下载 IPA 文件
-               - 通过 AltStore 安装
-            
-            2. **使用 Sideloadly**:
-               - 在电脑上安装 Sideloadly
-               - 连接 iPad
-               - 使用 Apple ID 签名并安装
-            
-            3. **使用 TrollStore** (如果已越狱):
-               - 直接安装 IPA 文件
-            
-            ### 功能特性
-            
-            - ✅ WebDAV 在线阅读
-            - ✅ 智能编码识别（支持 UTF-8、GBK、Big5 等）
-            - ✅ 分页/滚动双模式
-            - ✅ 自动章节识别
-            - ✅ 书签和标注
-            - ✅ 全文搜索
-            - ✅ TTS 朗读
-            - ✅ iPad 分屏支持
-            - ✅ 键盘快捷键
-            
-            构建时间: ${{ github.event.head_commit.timestamp }}
-          files: build/TxtReader-unsigned.ipa
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: List available schemes
+      run: |
+        xcodebuild -project TxtReader.xcodeproj -list
+    
+    - name: Build project
+      run: |
+        xcodebuild build \
+          -project TxtReader.xcodeproj \
+          -scheme TxtReader \
+          -sdk iphoneos \
+          -configuration Release \
+          -derivedDataPath ./build \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO \
+          DEVELOPMENT_TEAM="" \
+          ONLY_ACTIVE_ARCH=NO
+    
+    - name: Debug - List build output
+      run: |
+        echo "Listing build directory:"
+        ls -la ./build/Build/Products/Release-iphoneos/ || echo "Directory not found"
+        find ./build -name "*.app" -type d || echo "No .app found"
+    
+    - name: Create IPA
+      run: |
+        # Find the .app bundle
+        APP_PATH=$(find ./build/Build/Products/Release-iphoneos -name "TxtReader.app" -type d | head -1)
+        
+        if [ -z "$APP_PATH" ]; then
+          echo "Error: TxtReader.app not found"
+          echo "Searching in entire build directory:"
+          find ./build -name "*.app" -type d
+          exit 1
+        fi
+        
+        echo "Found app at: $APP_PATH"
+        
+        # Create IPA
+        mkdir -p Payload
+        cp -R "$APP_PATH" Payload/
+        zip -r TxtReader-unsigned.ipa Payload
+        rm -rf Payload
+        
+        echo "IPA created successfully"
+        ls -lh TxtReader-unsigned.ipa
+    
+    - name: Upload IPA
+      uses: actions/upload-artifact@v4
+      with:
+        name: TxtReader-unsigned
+        path: TxtReader-unsigned.ipa
+        retention-days: 30
+    
+    - name: Create Release
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v${{ github.run_number }}
+        name: Release v${{ github.run_number }}
+        body: |
+          ## TXT阅读器 - 未签名版本
+          
+          这是自动构建的未签名 IPA 文件。
+          
+          ### 安装方法
+          
+          1. **使用 AltStore**:
+             - 在 iPad 上安装 AltStore
+             - 下载 IPA 文件
+             - 通过 AltStore 安装
+          
+          2. **使用 Sideloadly**:
+             - 在电脑上安装 Sideloadly
+             - 连接 iPad
+             - 使用 Apple ID 签名并安装
+          
+          3. **使用 TrollStore** (如果已越狱):
+             - 直接安装 IPA 文件
+          
+          ### 功能特性
+          
+          - ✅ WebDAV 在线阅读
+          - ✅ 智能编码识别（支持 UTF-8、GBK、Big5 等）
+          - ✅ 分页/滚动双模式
+          - ✅ 自动章节识别
+          - ✅ 书签和标注
+          - ✅ 全文搜索
+          - ✅ TTS 朗读
+          - ✅ iPad 分屏支持
+          - ✅ 键盘快捷键
+          
+          构建时间: ${{ github.event.head_commit.timestamp }}
+        files: TxtReader-unsigned.ipa
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
