@@ -36,6 +36,9 @@ class WebDAVViewModel: ObservableObject {
     
     // MARK: - Connect to Account
     func connect(to account: WebDAVAccount) async {
+        isLoading = true
+        errorMessage = nil
+        
         do {
             let password = try WebDAVCredentialManager.shared.getPassword(accountID: account.id)
             webdavClient = WebDAVClient(account: account, password: password)
@@ -43,12 +46,22 @@ class WebDAVViewModel: ObservableObject {
             await loadDirectory(path: "/")
         } catch {
             errorMessage = "连接失败: \(error.localizedDescription)"
+            // 重要：连接失败时清理状态
+            webdavClient = nil
+            selectedAccount = nil
+            isLoading = false
+            return
         }
+        
+        isLoading = false
     }
     
     // MARK: - Load Directory
     func loadDirectory(path: String) async {
-        guard let client = webdavClient else { return }
+        guard let client = webdavClient else {
+            errorMessage = "WebDAV 客户端未初始化"
+            return
+        }
         
         isLoading = true
         errorMessage = nil
@@ -58,6 +71,7 @@ class WebDAVViewModel: ObservableObject {
             currentPath = path
         } catch {
             errorMessage = "加载目录失败: \(error.localizedDescription)"
+            items = [] // 清空列表避免显示旧数据
         }
         
         isLoading = false

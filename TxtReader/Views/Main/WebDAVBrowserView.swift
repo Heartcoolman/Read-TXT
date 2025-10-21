@@ -50,6 +50,22 @@ struct WebDAVBrowserView: View {
     
     private var accountSelectionView: some View {
         List {
+            if viewModel.isLoading {
+                HStack {
+                    Spacer()
+                    ProgressView("连接中...")
+                    Spacer()
+                }
+            }
+            
+            if let error = viewModel.errorMessage {
+                Section {
+                    Text(error)
+                        .foregroundColor(.red)
+                        .font(.callout)
+                }
+            }
+            
             ForEach(viewModel.accounts) { account in
                 Button(action: {
                     Task {
@@ -65,6 +81,7 @@ struct WebDAVBrowserView: View {
                     }
                     .padding(.vertical, 4)
                 }
+                .disabled(viewModel.isLoading)
             }
             .onDelete { indexSet in
                 for index in indexSet {
