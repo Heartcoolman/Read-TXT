@@ -5,6 +5,7 @@ struct WebDAVBrowserView: View {
     @Environment(\.modelContext) private var modelContext
     @StateObject private var viewModel = WebDAVViewModel()
     @State private var showingAddAccount = false
+    @State private var showingServiceGuide = false
     @State private var selectedBook: Book?
     @State private var showingReader = false
     @StateObject private var settings = ReaderSettings()
@@ -29,13 +30,23 @@ struct WebDAVBrowserView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showingAddAccount = true }) {
-                        Image(systemName: "plus")
+                    Menu {
+                        Button(action: { showingAddAccount = true }) {
+                            Label("添加账户", systemImage: "plus")
+                        }
+                        Button(action: { showingServiceGuide = true }) {
+                            Label("配置指南", systemImage: "questionmark.circle")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
                     }
                 }
             }
             .sheet(isPresented: $showingAddAccount) {
                 AddWebDAVAccountView(viewModel: viewModel)
+            }
+            .sheet(isPresented: $showingServiceGuide) {
+                WebDAVServiceGuide()
             }
             .fullScreenCover(isPresented: $showingReader) {
                 if let book = selectedBook {
@@ -90,10 +101,17 @@ struct WebDAVBrowserView: View {
             }
             
             if viewModel.accounts.isEmpty {
-                Text("点击右上角 + 添加 WebDAV 账户")
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding()
+                VStack(spacing: 16) {
+                    Text("点击右上角 ⋯ 添加 WebDAV 账户")
+                        .foregroundColor(.secondary)
+                    
+                    Button(action: { showingServiceGuide = true }) {
+                        Label("查看配置指南", systemImage: "questionmark.circle")
+                            .font(.subheadline)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding()
             }
         }
     }

@@ -7,14 +7,16 @@ class WebDAVClient {
     
     init(account: WebDAVAccount, password: String) {
         let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 30
-        config.timeoutIntervalForResource = 300
-        config.waitsForConnectivity = true
+        config.timeoutIntervalForRequest = 15  // 减少超时时间
+        config.timeoutIntervalForResource = 60
+        config.waitsForConnectivity = false  // 不等待连接，快速失败
         config.allowsCellularAccess = true
         config.httpAdditionalHeaders = [
             "User-Agent": "TxtReader/1.0",
-            "Accept": "*/*"
+            "Accept": "*/*",
+            "Accept-Language": "zh-CN,zh;q=0.9"
         ]
+        // 允许不安全的连接（飞牛可能使用自签名证书）
         self.session = URLSession(configuration: config)
         self.account = account
         self.password = password
